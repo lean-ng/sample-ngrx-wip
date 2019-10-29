@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Todo } from '../state/todo';
-import { StoreService } from '../state/store.service';
+import { Store } from '@ngrx/store';
+import { State, toggleTodo, removeTodo } from '../ngrx/state';
 
 @Component({
   selector: 'todo-item',
@@ -13,16 +14,16 @@ export class TodoItemComponent implements OnInit {
   @Input()
   todo: Todo;
 
-  constructor(private store: StoreService) { }
+  constructor(private store: Store<State>) { }
 
   ngOnInit() {
   }
 
   toggle() {
-    this.store.dispatch({ name: 'toggleTodo', id: this.todo.id });
+    this.store.dispatch(toggleTodo({ id: this.todo.id, completed: !this.todo.completed }));
   }
 
   remove() {
-    this.store.dispatch({ name: 'removeTodo', id: this.todo.id });
+    this.store.dispatch(removeTodo({ id: this.todo.id }));
   }
 }

@@ -6,7 +6,8 @@ export enum VisibilityFilter {
   Completed
 }
 
-export interface AppState {
+export interface TodoState {
   todos: Todo[];
   visibility: VisibilityFilter;
+  error: string;
 }

@@ -1,4 +1,4 @@
-import { VisibilityFilter, AppState } from './app-state';
+import { VisibilityFilter, TodoState } from './app-state';
 import { Todo } from './todo';
 
 export interface CreateTodo {
@@ -43,7 +43,7 @@ export type Action =
   RemoveTodo |
   ChangeVisibility;
 
-export function reducer( state: AppState, action: Action ): AppState {
+export function reducer( state: TodoState, action: Action ): TodoState {
 
   const nextId = state.todos.length === 0 ? 1 : state.todos[state.todos.length - 1].id + 1;
 
